@@ -1,0 +1,17 @@
+pandas
+numpy
+scikit-learn
+streamlit
+joblib
+mlflow
+dvc
+dvc-s3
+boto3 # To interact with AWS
+pyyaml
+tqdm # For progress bars
+python-box # For ConfigBox
+box
+ensure # For @ensure_annotations
+Pillow
+matplotlib
+seaborn
