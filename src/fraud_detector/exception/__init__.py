@@ -7,7 +7,7 @@ Function to get the details of the error
 
 
 def error_detail(error, error_detail: sys):
-    _, _, exc_tb = error_detail.exc_info()  # Get infomrmation of the excpetions
+    _, _, exc_tb = error_detail.exc_info()  # Get infomrmation of the excepetions
     # Name of the file where an error occured
     file_name = exc_tb.tb_frame.f_code.co_filename
     line_number = exc_tb.tb_lineno  # Number of the line

@@ -18,7 +18,7 @@ metrics:
 
 
 data_transformation:
-  numerical_features: ["amount", "oldBalanceOrg", "newBalanceOrg", "oldBalanceDest", "newBalanceDest"]
+  numerical_features: ["amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"]
   categorical_features: ["type"]
   drop_columns: ["nameOrig", "nameDest", "isFlaggedFraud", "step"] # 'step' if the EDA confirms that there is no time dependency
   # You can add parameters here for SMOTE or other techniques if they are used in the pipeline
