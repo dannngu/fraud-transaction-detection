@@ -80,12 +80,16 @@ def load_json(path: str) -> ConfigBox:
 
 @ensure_annotations
 def save_bin(data: object, path: Path):
-    """Saves data as a binary file (e.g., trained model, preprocessor).
+    """
+    Saves data as a binary file (e.g., trained model, preprocessor).
 
     Args:
         data (object): Data to be saved (e.g., model, preprocessor).
         path (Path): Path to binary file.
     """
+    path = Path(path)  # Ensures that even if someone passes a str, it becomes
+    # Create directories if they don't exist
+    path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(data, path)
     logger.info(f"binary file saved at: {path}")
 
