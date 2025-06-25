@@ -1,0 +1,21 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: "https://drive.google.com/file/d/1HKok4FKy0SpZR9iGob0ye_BU4tv84PGi/view?usp=sharing" # Or the direct URL of a CSV
+  # source_URL: "https://www.kaggle.com/datasets/ealaxi/paysim15/download" # Or the direct URL of a CSV
+  local_data_file: "artifacts/data_ingestion/fraud.csv" # Where the downloaded CSV will be saved
+
+data_transformation:
+  root_dir: artifacts/data_transformation
+  processed_data_file: "artifacts/data_transformation/processed_fraud_data.csv"
+  preprocessor_name: "preprocessor.joblib" # File name to save the ColumnTransformer to
+
+model_training:
+  root_dir: artifacts/model_training
+  trained_model_name: "fraud_detection_model.joblib" # File name to save the trained model to
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  metric_file_name: "metrics.json" # File to save evaluation metrics
+  mlflow_uri: "https://dagshub.com/tu_usuario_github/fraud_detection_mlops_project.mlflow" # Replace with your DagsHub user/repository

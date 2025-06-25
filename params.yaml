@@ -1,0 +1,25 @@
+# Parameters for data splitting
+test_size: 0.2
+random_state: 42
+
+# Parameters for the Logistic Regression model
+LogisticRegression:
+  solver: 'liblinear' # Or 'saga', 'lbfgs', etc.
+  C: 1.0 # Inverse of the regularization strength. Smaller values ​​specify stronger regularization.
+  class_weight: 'balanced' # Very important for class imbalance
+  random_state: 42
+  max_iter: 1000 # Maximum number of iterations for the optimizer to converge
+
+# Parameters for model evaluation
+metrics:
+  target_metric: "f1_score" # The main metric to optimize
+  threshold: 0.5 # Threshold for binary classification (if applicable)
+
+
+
+data_transformation:
+  numerical_features: ["amount", "oldBalanceOrg", "newBalanceOrg", "oldBalanceDest", "newBalanceDest"]
+  categorical_features: ["type"]
+  drop_columns: ["nameOrig", "nameDest", "isFlaggedFraud", "step"] # 'step' if the EDA confirms that there is no time dependency
+  # You can add parameters here for SMOTE or other techniques if they are used in the pipeline
+  # For example, sampling_strategy: "auto" for SMOTE
