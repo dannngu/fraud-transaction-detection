@@ -24,8 +24,22 @@ class DataTransformationConfig:
 
 @dataclass(frozen=True)
 class ModelTrainingConfig:
-    # We will add this entity later
-    pass
+    root_dir: Path
+    trained_model_name: str
+    # Parameters for Logistic Regression
+    solver: str
+    C: float
+    class_weight: str  # O dict manual weights
+    random_state: int
+    max_iter: int
+    # Paramters for XGBoost
+    xgb_objective: str
+    xgb_n_estimators: int
+    xgb_learning_rate: float
+    xgb_max_depth: int
+    xgb_subsample: float
+    xgb_colsample_bytree: float
+    # Add more parameters for XGBoost here
 
 
 @dataclass(frozen=True)

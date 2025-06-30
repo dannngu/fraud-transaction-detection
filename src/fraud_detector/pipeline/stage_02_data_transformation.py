@@ -1,7 +1,10 @@
-from fraud_detector import logger
-from fraud_detector.config.configuration import ConfigurationManager
-from fraud_detector.components.data_transformation import DataTransformation
+import os
 
+import numpy as np
+
+from fraud_detector import logger
+from fraud_detector.components.data_transformation import DataTransformation
+from fraud_detector.config.configuration import ConfigurationManager
 
 STAGE_NAME = "Data Ingestion Stage"
 
@@ -16,13 +19,26 @@ class DataTransformationTrainingPipeline:
         data_transformation = DataTransformation(
             config=data_transformation_config)
 
-        # La ruta al archivo de datos de entrada debe venir de la etapa de ingesta
-        # Por simplicidad, la tomamos directamente de config.yaml/data_ingestion.local_data_file
-        # En un pipeline DVC real, esto lo manejaría DVC
-        # Para obtener la ruta del archivo ingestado
+        # The path to the input data file must come from the ingestion stage
+        # For simplicity, we take it directly from config.yaml/data_ingestion.local_data_file
+        # In a real DVC pipeline, this would be handled by DVC
+        # To get the path of the ingested file
         data_ingestion_config = config.get_data_ingestion_config()
-        data_transformation.initiate_data_transformation(
-            data_ingestion_config.local_data_file)
+        X_train, X_test, y_train, y_test, preprocessor_path = \
+            data_transformation.initiate_data_transformation(
+                data_ingestion_config.local_data_file)
+
+        # Now that the variables are defined, we save them.
+        # The preprocessor is saved in its already defined location in the component.
+        # And the transformed data in .npy files to pass them on to the next stage.
+        np.save(os.path.join(
+            data_transformation_config.root_dir, "X_train.npy"), X_train)
+        np.save(os.path.join(
+            data_transformation_config.root_dir, "X_test.npy"), X_test)
+        np.save(os.path.join(
+            data_transformation_config.root_dir, "y_train.npy"), y_train)
+        np.save(os.path.join(
+            data_transformation_config.root_dir, "y_test.npy"), y_test)
 
 
 """
@@ -39,3 +55,5 @@ if __name__ == '__main__':
     except Exception as e:
         logger.exception(e)
         raise e
+
+

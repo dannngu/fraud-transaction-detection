@@ -16,6 +16,18 @@ metrics:
   threshold: 0.5 # Threshold for binary classification (if applicable)
 
 
+XGBoost:
+  objective: 'binary:logistic' # For binary classification
+  n_estimators: 100            # Number of trees
+  learning_rate: 0.1           # Learning rate
+  max_depth: 5                 # Maximum depth of trees
+  subsample: 0.8               # Subsampling of training instances
+  colsample_bytree: 0.8        # Submuestreo de columnas al construir cada árbol
+ # You can add more XGBoost parameters here, such as gamma, reg_alpha, reg_lambda, scale_pos_weight
+ # scale_pos_weight is very important for class imbalance in XGBoost
+ # scale_pos_weight: 99.87 # If 0.13% are positive, the ratio is (100-0.13)/0.13
+
+
 
 data_transformation:
   numerical_features: ["amount", "oldbalanceOrg", "newbalanceOrig", "oldbalanceDest", "newbalanceDest"]
@@ -23,3 +35,6 @@ data_transformation:
   drop_columns: ["nameOrig", "nameDest", "isFlaggedFraud", "step"] # 'step' if the EDA confirms that there is no time dependency
   # You can add parameters here for SMOTE or other techniques if they are used in the pipeline
   # For example, sampling_strategy: "auto" for SMOTE
+
+
+

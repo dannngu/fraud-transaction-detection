@@ -1,8 +1,9 @@
 # src/fraud_detector/components/data_ingestion.py
 import os
 import urllib.request as request  # # To download files from URLs
-import pathlib as Path
+from pathlib import Path
 from zipfile import ZipFile  # If your dataset is a .zip (common in Kaggle)
+
 from fraud_detector import logger
 from fraud_detector.entity.config_entity import DataIngestionConfig
 from fraud_detector.utils.common import get_size  # A utility we created
