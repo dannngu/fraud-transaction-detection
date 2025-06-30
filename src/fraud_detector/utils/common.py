@@ -1,12 +1,14 @@
+import json
 import os
-from ensure import ensure_annotations
+from pathlib import Path
+
+import joblib  # To have and load model/preprocesors of sckit-learn
+import yaml
 from box import ConfigBox
 from box.exceptions import BoxValueError
-from pathlib import Path
-import yaml
-import json
+from ensure import ensure_annotations
+
 from fraud_detector import logger
-import joblib  # To have and load model/preprocesors of sckit-learn
 
 
 @ensure_annotations
@@ -79,16 +81,16 @@ def load_json(path: str) -> ConfigBox:
 
 
 @ensure_annotations
-def save_bin(data: object, path: Path):
+def save_bin(data: object, path: str):
     """
     Saves data as a binary file (e.g., trained model, preprocessor).
 
     Args:
         data (object): Data to be saved (e.g., model, preprocessor).
-        path (Path): Path to binary file.
-    """
+        path (str): Path to binary file.
+    # """
     path = Path(path)  # Ensures that even if someone passes a str, it becomes
-    # Create directories if they don't exist
+    # # Create directories if they don't exist
     path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(data, path)
     logger.info(f"binary file saved at: {path}")

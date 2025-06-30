@@ -1,7 +1,6 @@
 from fraud_detector import logger
-from fraud_detector.config.configuration import ConfigurationManager
 from fraud_detector.components.data_ingestion import DataIngestion
-
+from fraud_detector.config.configuration import ConfigurationManager
 
 STAGE_NAME = "Data Ingestion Stage"
 

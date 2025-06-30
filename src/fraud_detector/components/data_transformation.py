@@ -1,17 +1,20 @@
 # src/fraud_detector/components/data_transformation.py
 import os
-import pandas as pd
+import sys
+from pathlib import Path
+
 import numpy as np
-import pathlib as Path
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+import pandas as pd
 from sklearn.compose import ColumnTransformer
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline  # We will use this for the preprocessor
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
 from fraud_detector import logger
 from fraud_detector.entity.config_entity import DataTransformationConfig
-from fraud_detector.utils.common import save_bin  # To save preprocessor
 from fraud_detector.exception import CustomException
-import sys
+from fraud_detector.utils.common import save_bin  # To save preprocessor
+
 # from imblearn.over_sampling import SMOTE # Uncomment if you're using SMOTE here
 # from imblearn.combine import SMOTETomek # Or some combination
 

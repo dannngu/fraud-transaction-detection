@@ -1,6 +1,5 @@
 import sys
 
-
 """
 Function to get the details of the error
 """
